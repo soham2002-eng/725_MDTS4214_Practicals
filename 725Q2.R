@@ -1,0 +1,31 @@
+rm(list=ls())
+set.seed(123)
+x=runif(50,5,10)
+e=rnorm(50,0,1)
+y=2+3*x+e
+Y=2+3*x
+x
+e
+y
+Y
+fit=lm(y~x)
+betanothat=coef(fit)[1]
+betahat=coef(fit)[2]
+betanothat
+betahat
+betanot=seq(betanothat-1,betanothat+1,length.out=100)
+betanot
+beta=seq(betahat-1,betahat+1,length.out=100)
+beta
+rss=matrix(NA,nrow=length(betanot),ncol=length(beta))
+rss
+for(i in length(betanot))
+{
+  for(j in length(beta))
+  {
+    yhat=betanot[i]+beta[j]*x
+    rss[i,j]=sum((y-yhat)^2)
+  }
+}
+rss
+min(rss)
